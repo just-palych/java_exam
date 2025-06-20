@@ -1,0 +1,184 @@
+билет 12 Савельев Константин М8О-313Б-22
+1
+java.util.Collections эт статические методы для взаимодействия с коллекциями
+ 
+сортировки
+
+sort(List<T> list) сорт в естественном порядке
+sort(List<T> list, Comparator<? super T> c) сорт список при помощи компаратра
+binarySearch(List<? extends Comparable<? super T>> list, T key) бина поиск в отсортированном списке
+binarySearch(List<? extends T> list, T key, Comparator<? super T> c) бин поиск при помощи компаратра
+
+смена порядка элементов
+reverse(List<?> list) обратный
+shuffle(List<?> list) перемешивает в рандомном порядке
+rotate(List<?> list, int distance) циклически сдвиг на distance
+swap(List<?> list, int i, int j) смена мест по индексам
+
+спец коллекции
+singleton(T o) неизменяемое множество из одного элемента
+singletonList(T o) неизменяемый список из одного элемента
+singletonMap(K key, V value) неизменяемую карту с парой ключ-значение
+unmodifiableCollection(Collection<? extends T> c) неизменяемое предстааавление коллекции
+synchronizedCollection(Collection<T> c) потокобезопасная коллекци
+
+бонусы
+max(Collection<? extends T> coll) макс
+min(Collection<? extends T> coll) мин
+frequency(Collection<?> c, Object o) частота вхождения 
+disjoint(Collection<?> c1, Collection<?> c2) проверка на пересечение
+addAll(Collection<? super T> c, T... elements) добавлениие всех элементов в колекц
+copy(List<? super T> dest, List<? extends T> src) копирование
+fill(List<? super T> list, T obj) замена всеех элементов на один
+replaceAll(List<T> list, T oldVal, T newVal) замена oldVal на newVal
+
+
+
+java.util.Arrays методы для работы с массивами
+
+
+asList(T... a) преобразует массив в список 
+copyOf(T[] original, int newLength) копирует массив с фикс новой длиной
+copyOfRange(T[] original, int from, int to) копирует часть массива
+fill(T[] a, T val) заполняет массив 
+equals(T[] a, T[] a2) проверка массивов на равенство
+deepEquals(Object[] a1, Object[] a2) сравнение для n мерных массивов
+sort(T[] a) сортирует
+sort(T[] a, Comparator<? super T> c) сортирует с компаратором
+binarySearch(T[] a, T key) бин поиск  
+binarySearch(T[] a, T key, Comparator<? super T> c) - бин поиск при помощи компаратора
+toString(T[] a) массив в строку
+deepToString(Object[] a) nмерный массив в строку
+hashCode(T[] a) хеш-код массива
+deepHashCode(Object[] a) хеш-код для nмерного массива
+stream(T[] array) поток из элементов массива
+parallelSort(T[] a) параллельная сортировка массива
+
+2
+
+Spring Boot  фреймворк для быстрой разработки Spring-приложений 
+
+простая настройка благодпря настройкам по умолчанию + автоматическая настройка компоненты на основе зависимостей в classpath
+есть встроенные готовые серверы Tomcat и  Jetty
+удобный мониторинг, безопасность, простая работа с Бд
+простая  сборка с помощью стартеров starter dependencies
+
+
+Основные составляющие
+
+Spring Core основа IoC-контейнера и DI
+Spring MVC для веб-приложений
+Spring Data унифицированный доступ к данным
+Spring Security  авторизация
+Spring Boot Actuator мониторинг 
+Spring Boot Auto-configuration авто конфиг
+
+
+
+Spring Boot использует наборы предварительно настроенных зависимостей
+автоматически настраивает бины на основе classpath
+Встроенный сервер - по умолчанию Tomcat
+Главный класс с @SpringBootApplication - точка входа
+
+аннотации 
+
+
+@SpringBootApplication комбинация @Configuration, @EnableAutoConfiguration и @ComponentScan
+@Component общая аннотация для любых Spring-компонентов
+@Service класс как сервисный компонент 
+@Repository работа с данными
+@Controller Spring MVC контроллер
+@Bean создает бин для Spring-контейнера
+@Table сопоставление с таблицей БД
+@Id первичный ключ
+@GeneratedValue принцип генерации ID
+@Column сопоставление с колонкой таблицы
+@Valid активирует валидацию для объекта
+@NotNull, @Sizе, @Min, @Max ограничения для полей
+
+## Основной скелет проекта
+
+Типовая структура проекта:
+```
+src/
+	main/
+		java/
+			com/example/
+			Application.java       main класс
+			config/               config классы
+			controller/           
+			service/              
+			model/                
+		resources/
+			static/                   
+			templates/                 шаблоны 
+			aapplication.yml
+			application-dev.properties
+
+
+конфиги
+
+форматы
+
+1 application.properties
+
+server.port=8080
+spring.datasource.url=jdbc:mysql://localhost:3306/test
+spring.datasource.username=kostas
+spring.datasource.password=1234k
+
+
+2application.yml (более структурированный)
+
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: kostas
+    password: 1234k
+
+
+3 application.conf 
+
+
+
+Swagger (OpenAPI) инструмент для документирования REST API
+аннотации
+
+@OpenAPIDefinition инфа об api
+@Operation описание операции
+@Parameter параметр метода
+@ApiResponse  ответы
+@Tag группировка 
+
+подкл
+implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+
+
+Основные библиотеки в Gradle
+
+работа с бд
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+runtimeOnly 'com.h2database:h2'              # встроенная Бд
+runtimeOnly 'org.postgresql:postgresql'      # постгра
+implementation 'org.flywaydb:flyway-core'     # миграции
+
+
+валидация
+implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+MVC
+implementation 'org.springframework.boot:spring-boot-starter-web'
+
+UI 
+implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
+тож полезно
+implementation 'org.springframework.boot:spring-boot-starter-actuator' # мониторинг
+implementation 'org.springframework.boot:spring-boot-starter-security' # безопасность
+implementation 'org.springframework.boot:spring-boot-devtools'        
+testImplementation 'org.springframework.boot:spring-boot-starter-test'# тестирование
+
